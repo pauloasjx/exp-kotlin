@@ -5,6 +5,11 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_lista_transacoes.*
 import pauloalvesjr.com.br.learningfinancas.R
+import pauloalvesjr.com.br.learningfinancas.adapters.TransactionListAdapter
+import pauloalvesjr.com.br.learningfinancas.enums.TransactionType
+import pauloalvesjr.com.br.learningfinancas.models.Transaction
+import java.math.BigDecimal
+import java.util.*
 
 class TransactionListActivity : AppCompatActivity() {
 
@@ -12,11 +17,14 @@ class TransactionListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_transacoes)
 
-        var sampleList = listOf("Comida - R$ 20,50", "Economia - R$ 100,00", "Airpods - R$ 800.00")
+        var transactions = listOf(
+                Transaction(30.0, "Comida", TransactionType.DESPESA),
+                Transaction(50.0, "Roupa", TransactionType.DESPESA),
+                Transaction(10.0, "Transporte", TransactionType.DESPESA),
+                Transaction(150.0, "Salario", TransactionType.RECEITA)
+        )
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, sampleList)
-
-        lista_transacoes_listview.adapter = adapter
+        lista_transacoes_listview.adapter = TransactionListAdapter(this, transactions)
     }
 
 }
