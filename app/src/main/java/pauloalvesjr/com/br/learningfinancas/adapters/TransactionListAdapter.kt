@@ -13,7 +13,6 @@ import pauloalvesjr.com.br.learningfinancas.extensions.formatToReal
 import pauloalvesjr.com.br.learningfinancas.extensions.limit
 import pauloalvesjr.com.br.learningfinancas.extensions.simpleTransactionFormat
 import pauloalvesjr.com.br.learningfinancas.models.Transaction
-import java.text.DecimalFormat
 
 class TransactionListAdapter(private val context : Context,
                              private val transactions : List<Transaction>) : BaseAdapter() {
@@ -25,11 +24,11 @@ class TransactionListAdapter(private val context : Context,
         val transaction = transactions[position]
 
         when (transaction.type) {
-            TransactionType.RECEITA -> {
+            TransactionType.INCOMINGS -> {
                 inflate.transacao_valor.setTextColor(ContextCompat.getColor(context, R.color.receita))
                 inflate.transacao_icone.setBackgroundResource(R.drawable.icone_transacao_item_receita)
             }
-            TransactionType.DESPESA -> {
+            TransactionType.EXPENSES -> {
                 inflate.transacao_valor.setTextColor(ContextCompat.getColor(context, R.color.despesa))
                 inflate.transacao_icone.setBackgroundResource(R.drawable.icone_transacao_item_despesa)
             }
